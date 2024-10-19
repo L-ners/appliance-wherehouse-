@@ -3,903 +3,728 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Appliance Warehouse Customer Information System</title>
+    <title>SIM System - Appliance Warehouse</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: lightblue;
+            margin: 0;
+            padding: 0;
         }
-
-        .tab {
-            overflow: hidden;
+        header {
+            background-color: #0082e6;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
             background-color: #333;
-        }
-
-        .tab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-            font-size: 17px;
-            color: white;
-        }
-
-        .tab button:hover {
-            background-color: #87CEFA;
-        }
-
-        .tab button.active {
-            background-color: #4682B4;
-        }
-
-        .tabcontent {
-            display: none;
-            padding: 6px 12px;
-            border-top: none;
-        }
-
-        .header {
-            background-color: black;
-            color: white;
-            font-size: 20px;
-            padding: 10px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #4682B4;
-            color: white;
-        }
-
-        /* Sub-tabs */
-        .subtab {
-            overflow: hidden;
-            background-color: #666;
-            margin-top: 10px;
-        }
-
-        .subtab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 10px;
-            transition: 0.3s;
-            font-size: 14px;
-            color: white;
-        }
-
-        .subtab button:hover {
-            background-color: #87CEFA;
-        }
-
-        .subtab button.active {
-            background-color: #87CEFA;
-        }
-
-        .subtabcontent {
-            display: none;
-            padding: 10px;
-            border-top: none;
-            background-color: #f9f9f9;
-            border: 1px solid #dee2e6;
-            margin-top: 10px;
-        }
-
-        /* Show active subtab content */
-        .subtabcontent.active {
-            display: block;
-        }
-
-        /* Basic styling for forms */
-        form {
-            margin: 20px 0;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        input, select {
-            padding: 8px;
-            width: 100%;
-            margin-bottom: 12px;
-        }
-
-        button.submit {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-        }
-
-        /* Basic table styling */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-         }
-
-    .low-stock {
-      color: red;
-    }
-
-        /* Calendar grid */
-        .calendar {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            margin-top: 20px;
-        }
-
-        .calendar div {
-            background-color: #b3e5fc; /* Light Blue for calendar days */
-            padding: 10px;
             text-align: center;
-          }
-
-        /* Dashboard Grid Styling */
-        .dashboard {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin: 20px;
         }
-
-        .dashboard-item {
-            background-color: #ffffff;
-            border-radius: 8px;
+        nav ul li {
+            display: inline-block;
+        }
+        nav ul li a {
+            padding: 14px 20px;
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav ul li a:hover {
+            background-color: #0082e6;
+        }
+        section {
+            display: none;
             padding: 20px;
+            background-color: white;
+            margin: 20px auto;
+            max-width: 900px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            border-radius: 8px;
         }
-
-        .dashboard-item h4 {
-            margin-bottom: 10px;
-            font-size: 20px;
+        .active {
+            display: block;
         }
-
-        .dashboard-item .count {
-            font-size: 36px;
-            font-weight: bold;
-            color: #4CAF50;
+        h2 {
+            color: #0082e6;
         }
-
-        .dashboard-item .description {
-            font-size: 14px;
-            color: #666;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
         }
-
-        /* Adjust grid layout for smaller screens */
-        @media (max-width: 768px) {
-            .dashboard {
-                grid-template-columns: 1fr;
-            }
+        table, th, td {
+            border: 1px solid #ddd;
         }
-
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #0082e6;
+            color: white;
+        }
+        form {
+            max-width: 400px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label, input, select {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #0082e6;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #005a9e;
+        }
+        .tab-menu {
+            display: flex;
+            justify-content: space-around;
+            background-color: #0082e6;
+            margin-top: 20px;
+            border-radius: 8px 8px 0 0;
+        }
+        .tab-menu button {
+            background-color: #0082e6;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            flex-grow: 1;
+            transition: background-color 0.3s;
+            border-radius: 8px 8px 0 0;
+        }
+        .tab-menu button:hover {
+            background-color: #005a9e;
+        }
+        .tab-menu button.active-tab {
+            background-color: #005a9e;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            max-width: 900px;
+            margin: auto;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .tab-content.active-tab {
+            display: block;
+        }
+        .calendar {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 15px;
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .day {
+        background-color: #0082e6;
+        color: white;
+        padding: 12px;
+        text-align: center;
+        font-weight: bold;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .tech {
+        background-color: #ffffff;
+        padding: 12px;
+        text-align: center;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease;
+    }
+    .tech:hover {
+        background-color: #e0f7fa;
+    }
+    .off {
+        color: #b0b0b0;
+        font-style: italic;
+    }
+    .calendar .tech {
+        font-size: 16px;
+    }
+    .calendar .day {
+        font-size: 18px;
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <img src="logo.png" alt="Company Logo" class="logo">
+        <h1>Service Information Management (SIM) System</h1>
+    </header>
 
-<h2>Appliance Warehouse Customer Information System</h2>
-<p>Click on the tabs to view different sections:</p>
-
-<div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'Home')">Home</button>
-  <button class="tablinks" onclick="openTab(event, 'Customer')">Customer</button>
-  <button class="tablinks" onclick="openTab(event, 'Inventory')">Inventory</button>
-  <button class="tablinks" onclick="openTab(event, 'Scheduler')">Scheduler</button>
-  <button class="tablinks" onclick="openTab(event, 'Reporting')">Reporting</button>
-</div>
-
-<!-- Home Tab Content -->
-<div id="Home" class="tabcontent">
-    <h3>Home</h3>
-    <!-- Sub-tabs for Home section -->
-    <div class="subtab">
-        <button class="subtablinks" onclick="openSubTab(event, 'DashboardOverview')">Dashboard Overview</button>
-        <button class="subtablinks" onclick="openSubTab(event, 'QuickAccess')">Quick Access to Common Tasks</button>
-    </div>
-
-    <!-- Sub-tab contents for Home section -->
-    <div id="DashboardOverview" class="subtabcontent">
-        <h4>Dashboard Overview</h4>
-        <div class="dashboard">
-            <!-- Customers Overview -->
-            <div class="dashboard-item">
-                <h4>Total Customers</h4>
-                <div class="count" id="customerCount">105</div>
-                <div class="description">Active customers in the system</div>
-            </div>
-
-            <!-- Inventory Overview -->
-            <div class="dashboard-item">
-                <h4>Low Stock Items</h4>
-                <div class="count" id="lowStockCount">15</div>
-                <div class="description">Items with stock below threshold</div>
-            </div>
-
-            <!-- Appointments Overview -->
-            <div class="dashboard-item">
-                <h4>Upcoming Appointments</h4>
-                <div class="count" id="appointmentCount">25</div>
-                <div class="description">Scheduled service appointments</div>
-            </div>
-
-            <!-- Financial Summary -->
-            <div class="dashboard-item">
-                <h4>Monthly Revenue</h4>
-                <div class="count" id="monthlyRevenue">$25,000</div>
-                <div class="description">Revenue for the current month</div>
-            </div>
-
-            <!-- Technicians Overview -->
-            <div class="dashboard-item">
-                <h4>Available Technicians</h4>
-                <div class="count" id="technicianCount">8</div>
-                <div class="description">Technicians available this week</div>
-            </div>
-
-            <!-- Pending Orders -->
-            <div class="dashboard-item">
-                <h4>Pending Parts Orders</h4>
-                <div class="count" id="pendingOrdersCount">12</div>
-                <div class="description">Orders waiting to be processed</div>
-            </div>
-        </div>
-    </div>
-
-    <div id="QuickAccess" class="subtabcontent">
-       <h4>Quick Access to Common Tasks</h4>
-        <p>Access commonly used functions quickly from this section.</p>
+    <!-- Menu Screen (Top Navigation Menu) -->
+    <nav>
         <ul>
-            <li><a href="#" onclick="openTab(event, 'Customer'); openSubTab(event, 'ViewDetails');">View Customer Information</a></li>
-            <li><a href="#" onclick="openTab(event, 'Scheduler'); openSubTab(event, 'CreateAppointment');">Create New Appointment</a></li>
-            <li><a href="#" onclick="openTab(event, 'Inventory'); openSubTab(event, 'PartsReorder');">Generate Inventory Report</a></li>
+            <li><a onclick="showSection('appointment-management')">Appointment Management</a></li>
+            <li><a onclick="showSection('technician-portal')">Technician Portal</a></li>
+            <li><a onclick="showSection('service-plans')">Service Plans</a></li>
+            <li><a onclick="showSection('reports')">Reports</a></li>
+            <li><a onclick="showSection('customer-information')">Customer Information</a></li>
+            <li><a onclick="showSection('contact-us')">Contact Us</a></li>
+            <li><a onclick="showSection('help-faq')">Help/FAQ</a></li>
         </ul>
-    </div>
-</div>
+    </nav>
 
-<!-- Customer Tab Content -->
-<div id="Customer" class="tabcontent">
-    <h3>Customer</h3>
-    <!-- Sub-tabs for Customer section -->
-    <div class="subtab">
-        <button class="subtablinks" onclick="openSubTab(event, 'ViewDetails')">View Customer Details</button>
-        <button class="subtablinks" onclick="openSubTab(event, 'ServiceHistory')">Service History by Customer</button>
-        <button class="subtablinks" onclick="openSubTab(event, 'NewCustomer')">Create New Customer Record</button>
-        <button class="subtablinks" onclick="openSubTab(event, 'UpdateCustomer')">Update Existing Customer Information</button>
-    </div>
-
-    <!-- Sub-tab contents for Customer section -->
-    <div id="ViewDetails" class="subtabcontent">
-        <h3>View Customer Details</h3>
-        <form>
-            <label for="customerID">Customer ID</label>
-            <input type="text" id="customerID" name="customerID" required>
-
-            <label for="customerName">Customer Name</label>
-            <input type="text" id="customerName" name="customerName" required>
-
-            <button type="submit" class="submit">View Details</button>
-        </form>
-    </div>
-
-    <div id="ServiceHistory" class="subtabcontent">
-        <h3>Service History by Customer</h3>
-        <form>
-            <label for="searchCustomer">Search by Customer ID or Name</label>
-            <input type="text" id="searchCustomer" name="searchCustomer" required>
-
-            <button type="submit" class="submit">View Service History</button>
-        </form>
-    </div>
-
-    <div id="NewCustomer" class="subtabcontent">
-        <h3>Create New Customer Record</h3>
-        <form>
-            <label for="newCustomerName">Customer Name</label>
-            <input type="text" id="newCustomerName" name="newCustomerName" required>
-
-            <label for="contactInfo">Contact Information</label>
-            <input type="text" id="contactInfo" name="contactInfo" required>
-
-            <label for="address">Address</label>
-            <input type="text" id="address" name="address" required>
-
-            <button type="submit" class="submit">Create Customer</button>
-        </form>
-    </div>
-
-    <div id="UpdateCustomer" class="subtabcontent">
-        <h3>Update Existing Customer Information</h3>
-        <form>
-            <label for="existingCustomerID">Customer ID</label>
-            <input type="text" id="existingCustomerID" name="existingCustomerID" required>
-
-            <label for="newDetails">New Contact Information</label>
-            <input type="text" id="newDetails" name="newDetails">
-
-            <button type="submit" class="submit">Update Information</button>
-        </form>
-    </div>
-</div> <!-- Close Customer Tab -->
-
-<!-- Inventory Tab Content -->
-<div id="Inventory" class="tabcontent">
-    <h3>Inventory</h3>
-    <!-- Sub-tabs for Inventory section -->
-    <div class="subtab">
-        <button class="subtablinks" onclick="openSubTab(event, 'ViewInventory')">View Inventory Status</button>
-        <button class="subtablinks" onclick="openSubTab(event, 'PartsReorder')">Parts Reorder Report</button>
-    </div>
-
-    <!-- Sub-tab contents for Inventory section -->
-    <div id="ViewInventory" class="subtabcontent">
-        <h3>View Inventory Status</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Objective</th>
-          <th>Name</th>
-          <th>Part Num.</th>
-          <th>Price</th>
-          <th>Stock</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Microwave</td>
-          <td>Microwave Door</td>
-          <td>74Y5HRTEBD</td>
-          <td>$55.49</td>
-          <td>20</td>
-        </tr>
-        <tr>
-          <td>Dehumidifier</td>
-          <td>Capacitator</td>
-          <td>2Q534T6WY5</td>
-          <td>$10.05</td>
-          <td>28</td>
-        </tr>
-        <tr>
-          <td>Washer</td>
-          <td>Washer Appliance</td>
-          <td>5W45UERSD</td>
-          <td>$550.99</td>
-          <td class="low-stock">3</td>
-        </tr>
-        <tr>
-          <td>Oven</td>
-          <td>Oven Appliance</td>
-          <td>46WUHSEDS</td>
-          <td>$600.89</td>
-          <td class="low-stock">5</td>
-        </tr>
-        <!-- Add more inventory rows as needed -->
-      </tbody>
-    </table>
-  </div>
-
-    <div id="PartsReorder" class="subtabcontent">
-         <h3>Parts Reorder Report</h3>
-  <table id="reorderTable">
-    <thead>
-      <tr>
-        <th>Objective</th>
-        <th>Name</th>
-        <th>Part Num.</th>
-        <th>Price</th>
-        <th>Stock</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Rows will be dynamically generated -->
-    </tbody>
-  </table>
-</div>
-</div> <!-- Scheduler Tab Content -->
-<div id="Scheduler" class="tabcontent">
-    <h3>Scheduler</h3>
-    <!-- Sub-tabs for Scheduler section -->
-    <div class="subtab">
-        <button class="subtablinks" onclick="openSubTab(event, 'ViewSchedule')">View Technician Schedule</button>
-        <button class="subtablinks" onclick="openSubTab(event, 'CreateAppointment')">Create New Appointment</button>
-        <button class="subtablinks" onclick="openSubTab(event, 'Reschedule')">Reschedule/Cancel Appointment</button>
-    </div>
-
-    <!-- Sub-tab contents for Scheduler section -->
-    <div id="ViewSchedule" class="subtabcontent">
-        <h3>View Technician Schedule</h3>
-        <p>Technician availability for the current week:</p>
-        <div class="calendar">
-            <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
-            <div>Technician A</div><div>Technician B</div><div>Technician C</div><div>Technician A</div><div>Technician D</div><div></div><div></div>
-            <div>Technician D</div><div>Technician A</div><div>Technician B</div><div>Technician C</div><div>Technician A</div><div></div><div></div>
+    <!-- Appointment Management -->
+    <section id="appointment-management" class="active">
+        <h2>Appointment Management</h2>
+        <div class="tab-menu">
+            <button class="active-tab" onclick="showTabContent('schedule-appointment-tab')">Schedule Appointment</button>
+            <button onclick="showTabContent('view-appointments-tab')">View Appointments</button>
         </div>
-    </div>
 
-    <div id="CreateAppointment" class="subtabcontent">
-        <h4>Create New Appointment</h4>
-        <form>
-            <label for="appointmentCustomerName">Customer Name</label>
-            <input type="text" id="appointmentCustomerName" name="customerName" required>
+        <!-- Schedule Appointment Tab -->
+        <div id="schedule-appointment-tab" class="tab-content active-tab">
+            <h3>Schedule Appointment</h3>
+            <form id="appointment-form">
+                <label for="date">Date:</label>
+                <input type="date" id="date" required>
+                <label for="time">Time:</label>
+                <input type="time" id="time" required>
+                <label for="customer-name">Customer Name:</label>
+                <input type="text" id="customer-name" required>
+                <input type="submit" value="Schedule Appointment">
+            </form>
+        </div>
 
-            <label for="appointmentContactInfo">Contact Information</label>
-            <input type="text" id="appointmentContactInfo" name="contactInfo" required>
+        <!-- View Appointments Tab -->
+        <div id="view-appointments-tab" class="tab-content">
+            <h3>View Appointments</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Customer Name</th>
+                        <th>Technician</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="appointment-list"></tbody>
+            </table>
+        </div>
+    </section>
 
-            <label for="serviceType">Service Type</label>
-            <select id="serviceType" name="serviceType">
-                <option value="repair">Repair</option>
-                <option value="installation">Installation</option>
-            </select>
+    <!-- Technician Portal -->
+    <section id="technician-portal">
+        <h2>Technician Portal</h2>
+        <div class="tab-menu">
+            <button class="active-tab" onclick="showTabContent('technician-schedule-tab')">Technician Schedule</button>
+            <button onclick="showTabContent('work-status-tab')">Update Work Status</button>
+            <button onclick="showTabContent('parts-request-tab')">Parts Request</button>
+        </div>
 
-            <label for="date">Preferred Date</label>
-            <input type="date" id="date" name="date" required>
+        <!-- Technician Schedule Tab -->
+        <div id="technician-schedule-tab" class="tab-content active-tab">
+            <h3>Technician Schedule</h3>
+            <p>Technician availability for the current week:</p>
+            <div class="calendar">
+                <div class="day">Mon</div><div class="day">Tue</div><div class="day">Wed</div><div class="day">Thu</div><div class="day">Fri</div><div class="day">Sat</div><div class="day">Sun</div>
+                <div class="tech">Mark Robles</div><div class="tech">Liam Henson</div><div class="tech">Lee Wong</div><div class="tech">Mark Robles</div><div class="tech">Rhonda Patel</div><div class="tech off">Off</div><div class="tech off">Off</div>
+                <div class="tech">Rhonda Patel</div><div class="tech">Mark Robles</div><div class="tech">Liam Henson</div><div class="tech">Lee Wong</div><div class="tech">Mark Robles</div><div class="tech off">Off</div><div class="tech off">Off</div>
+            </div>
+        </div>
 
-            <label for="time">Preferred Time</label>
-            <input type="time" id="time" name="time" required>
+        <!-- Update Work Status Tab -->
+        <div id="work-status-tab" class="tab-content">
+            <h3>Update Work Status</h3>
+            <form id="work-status-form">
+                <label for="technician-name">Technician Name:</label>
+                <input type="text" id="technician-name" required>
+                <label for="job-status">Job Status:</label>
+                <select id="job-status" required>
+                    <option value="Scheduled">Scheduled</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+                <label for="comments">Comments:</label>
+                <input type="text" id="comments">
+                <input type="submit" value="Update Status">
+            </form>
+        </div>
 
-            <label for="technician">Assign Technician</label>
-            <select id="technician" name="technician">
-                <option value="technicianA">Technician A</option>
-                <option value="technicianB">Technician B</option>
-                <option value="technicianC">Technician C</option>
-                <option value="technicianD">Technician D</option>
-            </select>
+        <!-- Parts Request Tab -->
+        <div id="parts-request-tab" class="tab-content">
+            <h3>Parts Request</h3>
+            <form id="parts-request-form">
+                <label for="technician-name">Technician Name:</label>
+                <input type="text" id="technician-name" required>
+                <label for="part-needed">Part Needed:</label>
+                <input type="text" id="part-needed" required>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" required>
+                <label for="comments">Comments:</label>
+                <input type="text" id="comments">
+                <input type="submit" value="Request Part">
+            </form>
+        </div>
+    </section>
 
-            <button type="submit" class="submit">Schedule Appointment</button>
-        </form>
-    </div>
+    <!-- Service Plans -->
+    <section id="service-plans">
+        <h2>Service Plans</h2>
+        <div class="tab-menu">
+            <button class="active-tab" onclick="showTabContent('view-service-plans-tab')">View Service Plans</button>
+            <button onclick="showTabContent('purchase-service-plan-tab')">Purchase Service Plan</button>
+        </div>
 
-    <div id="Reschedule" class="subtabcontent">
-        <h3>Reschedule/Cancel Appointment</h3>
-        <form>
-            <label for="search">Search Appointment (by Name or Appointment ID)</label>
-            <input type="text" id="search" name="search" required>
+        <!-- View Service Plans Tab -->
+        <div id="view-service-plans-tab" class="tab-content active-tab">
+            <h3>View Service Plans</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Plan Name</th>
+                        <th>Cost</th>
+                        <th>Duration</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Basic Plan</td>
+                        <td>$99/year</td>
+                        <td>1 year</td>
+                        <td>Covers basic repairs, 20% discount on parts.</td>
+                    </tr>
+                    <tr>
+                        <td>Premium Plan</td>
+                        <td>$199/year</td>
+                        <td>1 year</td>
+                        <td>All-inclusive repairs, free parts replacement.</td>
+                    </tr>
+                    <tr>
+                        <td>Family Plan</td>
+                        <td>$299/year</td>
+                        <td>1 year</td>
+                        <td>Covers multiple appliances, free service and parts.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-            <label for="action">Action</label>
-            <select id="action" name="action">
-                <option value="reschedule">Reschedule</option>
-                <option value="cancel">Cancel</option>
-            </select>
+        <!-- Purchase Service Plan Tab -->
+        <div id="purchase-service-plan-tab" class="tab-content">
+            <h3>Purchase Service Plan</h3>
+            <form id="purchase-plan-form">
+                <label for="customer-name">Customer Name:</label>
+                <input type="text" id="customer-name" required>
+                <label for="plan-type">Choose a Plan:</label>
+                <select id="plan-type" required>
+                    <option value="Basic Plan">Basic Plan - $99/year</option>
+                    <option value="Premium Plan">Premium Plan - $199/year</option>
+                    <option value="Family Plan">Family Plan - $299/year</option>
+                </select>
+                <label for="address">Address:</label>
+                <input type="text" id="address" required>
+                <label for="payment-method">Payment Method:</label>
+                <select id="payment-method" required>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="PayPal">PayPal</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                </select>
+                <input type="submit" value="Purchase Plan">
+            </form>
+        </div>
+    </section>
 
-            <label for="newDate">New Date (if rescheduling)</label>
-            <input type="date" id="newDate" name="newDate">
+    <!-- Reports -->
+    <section id="reports">
+        <h2>Reports</h2>
+        <div class="tab-menu">
+            <button class="active-tab" onclick="showTabContent('parts-report-tab')">Parts Report</button>
+            <button onclick="showTabContent('service-usage-report-tab')">Service Usage Report</button>
+            <button onclick="showTabContent('appointment-summary-tab')">Appointment Summary</button>
+            <button onclick="showTabContent('detail-report-tab')">Detail Report</button>
+            <button onclick="showTabContent('exception-report-tab')">Exception Report</button>
+            <button onclick="showTabContent('summary-report-tab')">Summary Report</button>
+        </div>
 
-            <label for="newTime">New Time (if rescheduling)</label>
-            <input type="time" id="newTime" name="newTime">
+        <!-- Parts Report Tab -->
+        <div id="parts-report-tab" class="tab-content active-tab">
+            <h3>Parts Report</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Part Name</th>
+                        <th>Part Number</th>
+                        <th>Quantity Used</th>
+                        <th>Date</th>
+                        <th>Technician</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Washer Pump</td>
+                        <td>W-1234</td>
+                        <td>3</td>
+                        <td>2024-10-15</td>
+                        <td>Lee Wong</td>
+                    </tr>
+                    <tr>
+                        <td>Microwave Door</td>
+                        <td>M-5678</td>
+                        <td>2</td>
+                        <td>2024-10-14</td>
+                        <td>Mark Robles</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-            <button type="submit" class="submit">Update Appointment</button>
-        </form>
-    </div>
-</div> <!-- Close Scheduler Tab -->
+        <!-- Service Usage Report Tab -->
+        <div id="service-usage-report-tab" class="tab-content">
+            <h3>Service Usage Report</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Service Type</th>
+                        <th>Date</th>
+                        <th>Technician</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>Repair</td>
+                        <td>2024-10-12</td>
+                        <td>Mark Robles</td>
+                        <td>Completed</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>Installation</td>
+                        <td>2024-10-10</td>
+                        <td>Liam Henson</td>
+                        <td>Completed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-<!-- Reporting Tab Content -->
-<div id="Reporting" class="tabcontent">
-    <h3>Reporting</h3>
-    <!-- Sub-tabs for Reporting section -->
-    <div class="subtab">
-        <button class="subtablinks" onclick="openSubTab(event, 'DetailReport')">Detail Report</button>
-        <button class="subtablinks" onclick="openSubTab(event, 'ExceptionReport')">Exception Report</button>
-        <button class="subtablinks" onclick="openSubTab(event, 'SummaryReport')">Summary Report</button>
-        <button class="subtablinks" onclick="openSubTab(event, 'PartsUsageReport')">Parts Usage Report</button>
-        <button class="subtablinks" onclick="openSubTab(event, 'FinancialSummary')">Financial Summary Report</button>
-    </div>
+        <!-- Appointment Summary Tab -->
+        <div id="appointment-summary-tab" class="tab-content">
+            <h3>Appointment Summary</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Customer Name</th>
+                        <th>Service Type</th>
+                        <th>Status</th>
+                        <th>Technician</th>
+                        <th>Service Fee</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2024-10-10</td>
+                        <td>Robert Brown</td>
+                        <td>Repair</td>
+                        <td>Scheduled</td>
+                        <td>Mark Robles</td>
+                        <td>$150</td>
+                    </tr>
+                    <tr>
+                        <td>2024-10-12</td>
+                        <td>John Doe</td>
+                        <td>Repair</td>
+                        <td>Completed</td>
+                        <td>Lee Wong</td>
+                        <td>$120</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <!-- Sub-tab contents for Reporting section -->
-    <div id="DetailReport" class="subtabcontent">
-      <h3>Detail Report</h3>
+        <!-- Detail Report Tab -->
+        <div id="detail-report-tab" class="tab-content">
+            <h3>Detail Report</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Technician</th>
+                        <th>Job</th>
+                        <th>Hours Worked</th>
+                        <th>Completion Status</th>
+                        <th>Customer Name</th>
+                        <th>Service Date</th>
+                        <th>Service Fee</th>
+                        <th>Customer Feedback</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lee Wong</td>
+                        <td>Replace Capacitor</td>
+                        <td>3</td>
+                        <td>Completed</td>
+                        <td>John Doe</td>
+                        <td>2024-10-10</td>
+                        <td>$120</td>
+                        <td>Great work, fast service</td>
+                    </tr>
+                    <tr>
+                        <td>Mark Robles</td>
+                        <td>Microwave Repair</td>
+                        <td>2</td>
+                        <td>Scheduled</td>
+                        <td>Robert Brown</td>
+                        <td>2024-10-15</td>
+                        <td>$150</td>
+                        <td>N/A</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <!-- Start of Detail Report Mockup -->
-    <div class="header">DETAIL REPORT</div>
+        <!-- Exception Report Tab -->
+        <div id="exception-report-tab" class="tab-content">
+            <h3>Exception Report</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Technician</th>
+                        <th>Service</th>
+                        <th>Issue</th>
+                        <th>Date</th>
+                        <th>Impact</th>
+                        <th>Resolution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Liam Henson</td>
+                        <td>Washer Installation</td>
+                        <td>Parts Not Delivered</td>
+                        <td>2024-10-11</td>
+                        <td>Delay in Job Completion</td>
+                        <td>Rescheduled to 2024-10-13</td>
+                    </tr>
+                    <tr>
+                        <td>Mark Robles</td>
+                        <td>Microwave Repair</td>
+                        <td>Customer Rescheduled</td>
+                        <td>2024-10-12</td>
+                        <td>Appointment Delayed</td>
+                        <td>Rescheduled to 2024-10-16</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <table>
-      <tr class="subheader">
-        <td>Name: Sonia Lopez</td>
-        <td>Email: <a href="mailto:sonialopez@outlook.com">sonialopez@outlook.com</a></td>
-      </tr>
-    </table>
+        <!-- Summary Report Tab -->
+        <div id="summary-report-tab" class="tab-content">
+            <h3>Summary Report</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Technician</th>
+                        <th>Total Jobs Completed</th>
+                        <th>Total Hours Worked</th>
+                        <th>Total Service Revenue</th>
+                        <th>Customer Feedback (Avg Rating)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lee Wong</td>
+                        <td>15</td>
+                        <td>45</td>
+                        <td>$2,250</td>
+                        <td>4.8/5</td>
+                    </tr>
+                    <tr>
+                        <td>Mark Robles</td>
+                        <td>10</td>
+                        <td>30</td>
+                        <td>$1,500</td>
+                        <td>4.5/5</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-    <table>
-      <tr>
-        <td class="detail-cell"><strong>ID:</strong> 497834</td>
-        <td class="detail-cell"><strong>Department:</strong> Appliance Sales</td>
-      </tr>
-      <tr>
-        <td class="detail-cell"><strong>Address:</strong> 567 Princeton St, Newark, NJ</td>
-        <td class="detail-cell"><strong>Position:</strong> Manager</td>
-      </tr>
-      <tr>
-        <td class="detail-cell"><strong>Phone Number:</strong> 973 469 3456</td>
-      </tr>
-    </table>
+    <!-- Customer Information -->
+    <section id="customer-information">
+       <h2>Customer Information</h2>
+        <div class="tab-menu">
+            <button class="active-tab" onclick="showTabContent('search-customer-tab')">Search Customer</button>
+            <button onclick="showTabContent('customer-service-history-tab')">Customer Service History</button>
+        </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Hire Date</th>
-          <th>Schedule</th>
-          <th>PTO</th>
-          <th>Reg. Hours</th>
-          <th>O.T. Hours</th>
-          <th>Total Hours</th>
-          <th>Rate</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="detail-row">
-          <td>11/2/2020</td>
-          <td>4/20/2020</td>
-          <td>Mon-Fri 8AM-5PM</td>
-          <td>200 Hrs</td>
-          <td>40 Hrs</td>
-          <td>15 Hrs</td>
-          <td>55 Hrs</td>
-          <td>$25/Hr</td>
-        </tr>
-      </tbody>
-    </table>
+        <!-- Search Customer Tab -->
+        <div id="search-customer-tab" class="tab-content active-tab">
+            <h3>Search Customer</h3>
+            <form id="search-customer-form">
+                <label for="search-customer-name">Customer Name:</label>
+                <input type="text" id="search-customer-name" required>
+                <input type="submit" value="Search">
+            </form>
+            <div id="customer-search-results">
+                <!-- Results will be displayed here -->
+            </div>
+        </div>
 
-    <p>Detail Report Mockup</p>
-    <!-- End of Detail Report Mockup -->
+        <!-- Customer Service History Tab -->
+        <div id="customer-service-history-tab" class="tab-content">
+            <h3>Customer Service History</h3>
+            <p>Customer service history details will be displayed here.</p>
+            <table id="customer-history-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Service Type</th>
+                        <th>Status</th>
+                        <th>Technician</th>
+                        <th>Service Fee</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Service history data will be dynamically loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-  </div>
+    <!-- Contact Us -->
+    <section id="contact-us">
+        <h2>Contact Us</h2>
+        <ul>
+            <li>Email Us: support@appliancewarehouse.com</li>
+            <li>Call Us: 1-800-555-1234</li>
+        </ul>
+    </section>
 
+    <!-- Help/FAQ -->
+    <section id="help-faq">
+        <h2>Help/FAQ</h2>
+        <div class="tab-menu">
+            <button class="active-tab" onclick="showTabContent('common-issues-tab')">Common Issues</button>
+            <button onclick="showTabContent('user-guide-tab')">User Guide</button>
+        </div>
 
-    <div id="ExceptionReport" class="subtabcontent">
-        <h3>Exception Report</h3>
-    <div class="header">EXCEPTION REPORT</div>
-    <table>
-      <tr class="subheader">
-        <td>Name: Lisa Shields</td>
-        <td>Position: Appointment Setter</td>
-      </tr>
-      <tr class="subheader">
-        <td colspan="2">Exception: Appointments for November 1st – 4th</td>
-      </tr>
-    </table>
+        <!-- Common Issues Tab -->
+        <div id="common-issues-tab" class="tab-content active-tab">
+            <h3>Common Issues</h3>
+            <ul>
+                <li><strong>Issue:</strong> Unable to schedule an appointment.<br>
+                    <strong>Solution:</strong> Ensure all fields are filled out correctly, including the date, time, and customer name. If the problem persists, try refreshing the page or contact support.</li>
+                <li><strong>Issue:</strong> Technician schedule not displaying.<br>
+                    <strong>Solution:</strong> Clear your browser cache or try accessing the schedule from a different browser. If the issue continues, please reach out to IT support.</li>
+                <li><strong>Issue:</strong> Service plan purchase not processing.<br>
+                    <strong>Solution:</strong> Check that your payment information is correct. You can also try switching between different payment methods or contact customer service for further assistance.</li>
+            </ul>
+        </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Description</th>
-          <th>Technician</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>11/1/2020</td>
-          <td>Replacement Capacitor for Nolan North at 123 Conch St, Piscataway, NJ</td>
-          <td>Lee Wong</td>
-        </tr>
-        <tr>
-          <td>11/2/2020</td>
-          <td>Replacement Microwave door for Chris Evans at 234 Princeton Rd, Linden, NJ</td>
-          <td>Mark Robles</td>
-        </tr>
-        <tr>
-          <td>11/3/2020</td>
-          <td>Install Laundry Machine for Lil Wayne, 1776 Raritan Rd, Scotch Plains, NJ</td>
-          <td>Lee Wong</td>
-        </tr>
-        <tr>
-          <td>11/4/2020</td>
-          <td>Install oven for Bobcat Goldthwait at 765 George Rd, Newark, NJ</td>
-          <td>Liam Henson</td>
-        </tr>
-      </tbody>
-    </table>
-</div>
+        <!-- User Guide Tab -->
+        <div id="user-guide-tab" class="tab-content">
+            <h3>User Guide</h3>
+            <p>Welcome to the Appliance Warehouse SIM System User Guide. Below are the instructions to help you navigate and use the system:</p>
+            <ol>
+                <li><strong>Logging In:</strong> Use your assigned credentials to log in to the system. If you have issues logging in, please reset your password or contact your system administrator.</li>
+                <li><strong>Scheduling Appointments:</strong> Navigate to the "Appointment Management" section, select "Schedule Appointment," and fill in the required fields such as date, time, and customer details. Once done, click "Schedule Appointment."</li>
+                <li><strong>Viewing Appointments:</strong> To view scheduled appointments, navigate to "Appointment Management" and select "View Appointments." You will see a list of all the upcoming appointments.</li>
+                <li><strong>Technician Portal:</strong> Access technician schedules, update work status, or request parts under the "Technician Portal" section. All necessary forms and options will be available there.</li>
+                <li><strong>Service Plans:</strong> You can view or purchase service plans in the "Service Plans" section. Choose the plan that best suits your needs, fill out the required information, and complete the purchase process.</li>
+                <li><strong>Reports:</strong> Access detailed, summary, or exception reports in the "Reports" section to analyze service usage, parts usage, or appointment summaries.</li>
+                <li><strong>Customer Information:</strong> Search for customer details and view their service history in the "Customer Information" section.</li>
+                <li><strong>Help/FAQ:</strong> If you need assistance, visit the "Help/FAQ" section where you can find common issues and solutions, or access this user guide.</li>
+            </ol>
+        </div>
+    </section>
 
-    <div id="SummaryReport" class="subtabcontent">
-        <h3>Summary Report</h3>
-    <div class="header">SUMMARY REPORT</div>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Object</th>
-          <th>Name</th>
-          <th>Part Num.</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Stock</th>
-          <th>Next Order</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Microwave</td>
-          <td>Microwave Door</td>
-          <td>74Y5HRTEBD</td>
-          <td>$55.49</td>
-          <td>24</td>
-          <td>20</td>
-          <td>11/2/2020</td>
-        </tr>
-        <tr>
-          <td>Dehumidifier</td>
-          <td>Capacitator</td>
-          <td>2Q534T6WY5</td>
-          <td>$10.05</td>
-          <td>45</td>
-          <td>28</td>
-          <td>11/1/2020</td>
-        </tr>
-        <tr>
-          <td>Washer</td>
-          <td>Washer Appliance</td>
-          <td>5W45UERSD</td>
-          <td>$550.99</td>
-          <td>8</td>
-          <td>3</td>
-          <td>11/4/2020</td>
-        </tr>
-        <tr>
-          <td>Oven</td>
-          <td>Oven Appliance</td>
-          <td>46WUHSEDS</td>
-          <td>$600.89</td>
-          <td>12</td>
-          <td>5</td>
-          <td>11/3/2020</td>
-        </tr>
-      </tbody>
-    </table>
-    <p>Summary Report Mockup</p>
-</div>
-
-    <div id="PartsUsageReport" class="subtabcontent">
-       <h3>Parts Usage Report</h3>
-  <div class="header">PARTS USAGE REPORT</div>
-  
-  <table>
-    <thead>
-      <tr>
-        <th>Part Name</th>
-        <th>Part Num.</th>
-        <th>Quantity Used</th>
-        <th>Technician</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Capacitor</td>
-        <td>2Q534T6WY5</td>
-        <td>3</td>
-        <td>Lee Wong</td>
-        <td>11/1/2020</td>
-      </tr>
-      <tr>
-        <td>Microwave Door</td>
-        <td>74Y5HRTEBD</td>
-        <td>2</td>
-        <td>Mark Robles</td>
-        <td>11/2/2020</td>
-      </tr>
-      <tr>
-        <td>Compressor</td>
-        <td>3KJ7VBD54W</td>
-        <td>1</td>
-        <td>Lee Wong</td>
-        <td>11/3/2020</td>
-      </tr>
-      <tr>
-        <td>Water Pump</td>
-        <td>4HJ6TY5USD</td>
-        <td>4</td>
-        <td>Liam Henson</td>
-        <td>11/4/2020</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <p>Parts Usage Report Mockup</p>
-</div>
-
-    <div id="FinancialSummary" class="subtabcontent">
-        <h3>Financial Summary Report</h3>
-  <div class="header">FINANCIAL SUMMARY REPORT</div>
-  
-  <table>
-    <thead>
-      <tr>
-        <th>Category</th>
-        <th>Cost</th>
-        <th>Revenue</th>
-        <th>Profit/Loss</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Labor Costs</td>
-        <td>$12,500</td>
-        <td>$0</td>
-        <td>-$12,500</td>
-        <td>Q1 2023</td>
-      </tr>
-      <tr>
-        <td>Parts Revenue</td>
-        <td>$0</td>
-        <td>$50,000</td>
-        <td>$50,000</td>
-        <td>Q1 2023</td>
-      </tr>
-      <tr>
-        <td>Maintenance Costs</td>
-        <td>$5,000</td>
-        <td>$0</td>
-        <td>-$5,000</td>
-        <td>Q1 2023</td>
-      </tr>
-      <tr>
-        <td>Service Fees</td>
-        <td>$0</td>
-        <td>$30,000</td>
-        <td>$30,000</td>
-        <td>Q1 2023</td>
-      </tr>
-      <tr>
-        <td>Net Profit</td>
-        <td></td>
-        <td></td>
-        <td>$62,500</td>
-        <td>Q1 2023</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <p>Financial Summary Report Mockup</p>
-</div>
-</div> <!-- Close Reporting Tab -->
-
-<script>
-    // Function to handle main tabs
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-
-        // Hide all tabcontent elements
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
+    <!-- Script for Navigation and Tab Handling -->
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
         }
 
-        // Remove active class from all tablinks
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        function showTabContent(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const tabButtons = document.querySelectorAll('.tab-menu button');
+            
+            tabs.forEach(tab => tab.classList.remove('active-tab'));
+            tabButtons.forEach(button => button.classList.remove('active-tab'));
+            
+            document.getElementById(tabId).classList.add('active-tab');
+            document.querySelector(`[onclick="showTabContent('${tabId}')"]`).classList.add('active-tab');
         }
 
-        // Show the selected tab's content
-        document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
+        // Sample appointment data
+        const appointments = [
+            { date: '2024-10-15', time: '10:00 AM', customerName: 'John Doe', technician: 'Mark Robles', status: 'Scheduled' },
+            { date: '2024-10-16', time: '2:00 PM', customerName: 'Jane Smith', technician: 'Liam Henson', status: 'Completed' },
+            { date: '2024-10-17', time: '11:30 AM', customerName: 'Robert Brown', technician: 'Lee Wong', status: 'Scheduled' }
+        ];
 
-    // Function to handle sub-tabs
-    function openSubTab(evt, subTabName) {
-        var i, subtabcontent, subtablinks;
+        // Function to dynamically load appointment data into the table
+        function loadAppointments() {
+            const appointmentList = document.getElementById('appointment-list');
+            appointmentList.innerHTML = ''; // Clear previous rows
 
-        // Hide all subtab content
-        subtabcontent = document.getElementsByClassName("subtabcontent");
-        for (i = 0; i < subtabcontent.length; i++) {
-            subtabcontent[i].style.display = "none";
-        }
-
-        // Remove active class from all subtab links
-        subtablinks = document.getElementsByClassName("subtablinks");
-        for (i = 0; i < subtablinks.length; i++) {
-            subtablinks[i].className = subtablinks[i].className.replace(" active", "");
-        }
-
-        // Show the selected subtab content
-        document.getElementById(subTabName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-
-    // Open the default tab on page load
-    window.onload = function() {
-        document.getElementsByClassName("tablinks")[0].click(); // Open the first main tab
-    }
- // Function to handle sub-tabs
-    function openSubTab(evt, subTabName) {
-        var i, subtabcontent, subtablinks;
-
-        subtabcontent = document.getElementsByClassName("subtabcontent");
-        for (i = 0; i < subtabcontent.length; i++) {
-            subtabcontent[i].style.display = "none";
-        }
-
-        subtablinks = document.getElementsByClassName("subtablinks");
-        for (i = 0; i < subtablinks.length; i++) {
-            subtablinks[i].className = subtablinks[i].className.replace(" active", "");
-        }
-
-        document.getElementById(subTabName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-
-    // Inventory data as an array of objects
-    const inventory = [
-        { objective: 'Microwave', name: 'Microwave Door', partNum: '74Y5HRTEBD', price: 55.49, stock: 20 },
-        { objective: 'Dehumidifier', name: 'Capacitator', partNum: '2Q534T6WY5', price: 10.05, stock: 28 },
-        { objective: 'Washer', name: 'Washer Appliance', partNum: '5W45UERSD', price: 550.99, stock: 3 },
-        { objective: 'Oven', name: 'Oven Appliance', partNum: '46WUHSEDS', price: 600.89, stock: 5 },
-        { objective: 'Refrigerator', name: 'Compressor', partNum: '3KJ7VBD54W', price: 220.75, stock: 10 },
-        { objective: 'Dishwasher', name: 'Water Pump', partNum: '4HJ6TY5USD', price: 45.99, stock: 12 },
-    ];
-
-    const reorderThreshold = 10;
-
-    function generateReorderReport() {
-        const tableBody = document.querySelector("#reorderTable tbody");
-        tableBody.innerHTML = ""; // Clear previous rows
-        inventory.forEach(item => {
-            if (item.stock < reorderThreshold) {
+            appointments.forEach(appointment => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${item.objective}</td>
-                    <td>${item.name}</td>
-                    <td>${item.partNum}</td>
-                    <td>$${item.price.toFixed(2)}</td>
-                    <td class="low-stock">${item.stock}</td>
+                    <td>${appointment.date}</td>
+                    <td>${appointment.time}</td>
+                    <td>${appointment.customerName}</td>
+                    <td>${appointment.technician}</td>
+                    <td>${appointment.status}</td>
                 `;
-                tableBody.appendChild(row);
-            }
+                appointmentList.appendChild(row);
+            });
+        }
+
+        // Load appointments on page load
+        window.onload = function() {
+            loadAppointments();
+        };
+
+        document.getElementById('work-status-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Work status updated successfully!');
         });
-    }
 
-    // Call the function to generate the report when the page loads
-    window.onload = function() {
-        document.getElementsByClassName("tablinks")[0].click(); // Open the first tab
-        generateReorderReport(); // Generate reorder report on load
-    }
-    // You can dynamically set these values using JavaScript if you have data.
-    // For now, they are static placeholders for the dashboard overview.
-    const customerCount = 105;
-    const lowStockCount = 15;
-    const appointmentCount = 25;
-    const monthlyRevenue = 25000;
-    const technicianCount = 8;
-    const pendingOrdersCount = 12;
+        document.getElementById('parts-request-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Parts request submitted successfully!');
+        });
 
-    // Example of how you could dynamically set these values if needed:
-    document.getElementById("customerCount").innerText = customerCount;
-    document.getElementById("lowStockCount").innerText = lowStockCount;
-    document.getElementById("appointmentCount").innerText = appointmentCount;
-    document.getElementById("monthlyRevenue").innerText = "$" + monthlyRevenue.toLocaleString();
-    document.getElementById("technicianCount").innerText = technicianCount;
-    document.getElementById("pendingOrdersCount").innerText = pendingOrdersCount
-</script>
-
+        document.getElementById('purchase-plan-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Service Plan purchased successfully!');
+        });
+    </script>
 </body>
 </html>
